@@ -98,27 +98,20 @@
      } else {
          say_helloBtn.setAttribute("onclick", `magician.say_hello()`);
          properties.appendChild(say_helloBtn);
-     }
-     if (obj == human) {
          properties.appendChild(forProperties);
          forProperties.innerHTML = `<p>name: <span class="propValue">${magician.name}</span></p>
                  <p>age: <span class="propValue">${magician.age}</span></p>
-                 <p>species: <span class="propValue">${magician.species}</span></p>
-                 <p>job: <span class="propValue">${magician.job}</span></p>`;
+                 <p>species: <span class="propValue">${magician.species}</span></p>`;
+     }
+     if (obj == human) {
+         forProperties.innerHTML += `<p>job: <span class="propValue">${magician.job}</span></p>`;
      }
      if (obj == vampire) {
-         properties.appendChild(forProperties);
-         forProperties.innerHTML = `<p>name: <span class="propValue">${magician.name}</span></p>
-                <p>age: <span class="propValue">${magician.age}</span></p>
-                <p>species: <span class="propValue">${magician.species}</span></p>
-                <p>job: <span class="propValue">${magician.job}</span></p>
-                <p>title: <span class="propValue">${vampire.title}</span></p>`;
+         forProperties.innerHTML +=
+             ` <p>job: <span class="propValue">${magician.job}</span></p>
+          <p>title: <span class="propValue">${magician.title}</span></p>`;
      }
      if (obj == dog) {
-         properties.appendChild(forProperties);
-         forProperties.innerHTML = `<p>name: <span class="propValue">${magician.name}</span></p>
-               <p>age: <span class="propValue">${magician.age}</span></p>
-               <p>species: <span class="propValue">${magician.species}</span></p>
-               <p>color: <span class="propValue">${dog.color}</span></p>`;
+         forProperties.innerHTML += `<p>color: <span class="propValue">${magician.color}</span></p>`;
      }
  }
