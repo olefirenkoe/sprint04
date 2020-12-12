@@ -38,7 +38,7 @@ let avengers = new Movie("Avengers: Endgame",
 
 let inception = new Movie("Inception",
     "assets/images/inception.jpg", "July 8, 2010",
-    `Dominick "Dom" Cobb and Arthur are "extractors": 
+    `Dominick "Dom" Cobb and Arthur are "extractors":
     they perform corporate espionage using experimental
     military technology to infiltrate their targets' 
     subconscious and extract information through a 
@@ -47,7 +47,7 @@ let inception = new Movie("Inception",
     impossible job: implanting an idea in a person's subconscious, 
     or "inception". Saito wants Cobb to convince Robert, the son of
     Saito's competitor Maurice Fischer, 
-    to dissolve his father's company.`, ["Leonardo DiCaprio", "Joseph Gordon", "Elliot Page", "Tom Hardy"]);
+    to dissolve his father's company.`, ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page", "Tom Hardy"]);
 
 let spiderMan = new Movie("Spider-Man",
     "assets/images/spider-man.jpg", "November 20, 2010",
@@ -92,63 +92,28 @@ let darkKnight = new Movie("The Dark Knight",
     a normal life with Rachel Dawes—even though she and Dent 
     are dating.`, ["Christian Bale", "Michael Caine", "Heath Ledger", "Gary Oldman"]);
 
-let all = new Set([johnWick, avengers, inception, spiderMan, joker, darkKnight]);
+let all = new Set();
 
-// all.add(johnWick);
-// all.add(avengers);
-// all.add(inception);
-// all.add(spiderMan);
-// all.add(joker);
-// all.delete(darkKnight);
+all.add(johnWick);
+all.add(avengers);
+all.add(inception);
+all.add(spiderMan);
+all.add(joker);
+all.add(darkKnight);
 
-// for (let movie of all) {
-//     console.log(movie.date);
-// }
+for (let movie of all) {
+    console.log(movie.title);
+}
 
 console.log(all.size);
 
 let list = document.querySelector('.list');
 
-let i = 0;
 for (let movie of all) {
-    list.innerHTML += `<p data-id=${i} class="title">${movie.title}</p>`;
-    i++;
+    list.innerHTML += `<p class="title">${movie.title}</p>`;
 }
 
 let firstTitle = document.getElementsByClassName("title");
 firstTitle[0].setAttribute("id", "activeTitle");
 
-let activeTitle = document.getElementById("activeTitle");
-
-
-// console.log(activeTitle.innerHTML);
-
-// let iterator = all.keys();
-
-// let activeMovie = iterator.next().value;
-// console.log(activeMovie.title);
-
-// for (johnWick of all) {
-//     console.log(johnWick.title);
-// }
-console.log(Array.from(all)[1].title);
-
-function description(a) {
-    let movieFromSet = Array.from(all)[a];
-    let poster = document.getElementById("poster");
-    let description = document.getElementById("description");
-    // let actorsList = document.createElement("ul");
-
-    poster.src = movieFromSet.poster;
-    description.innerHTML += `<h2>${movieFromSet.title}</h2>`;
-    description.innerHTML += `<p>${movieFromSet.date}</p>`;
-
-
-    for (let i = 0; i < movieFromSet.actors.length; i++) {
-        description.innerHTML += `<li class="actorsList">${movieFromSet.actors[i]}</li>`;
-    }
-
-    description.innerHTML += `<div class="info">${movieFromSet.info}</ class="info">`
-
-}
-description(4);
+let activeTitle = document
