@@ -3,7 +3,6 @@
      this.age = age;
      this.species = species;
      this._portrait = _portrait;
-
  }
  Creature.prototype.say_hello = function() {
      console.log(`Hello, my name is ${this.name}`);

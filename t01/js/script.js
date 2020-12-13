@@ -1,18 +1,24 @@
 class Movie {
     constructor(title, poster, date, info, actors) {
-        this.title = title;
-        this.poster = poster;
-        this.date = date;
-        this.info = info;
-        this.actors = actors;
-    }
-    addToFavorite() {
-        alert("add to favorite");
-    }
+            this.title = title;
+            this.poster = poster;
+            this.date = date;
+            this.info = info;
+            this.actors = actors;
+        }
+        // 'addToFavorite' () {
+        //     // favorite.add();
+        //     console.log(this.title);
+        // }
     removeFromFavorite() {
         alert("remove to favorite");
     }
 }
+
+Movie.prototype.addToFavorite = function() {
+    console.log(`Hello, my name is ${this.title}`);
+};
+
 
 let johnWick = new Movie("John Wick",
     "assets/images/JohnWick.jpg", "May 9, 2019",
@@ -93,62 +99,57 @@ let darkKnight = new Movie("The Dark Knight",
     are dating.`, ["Christian Bale", "Michael Caine", "Heath Ledger", "Gary Oldman"]);
 
 let all = new Set([johnWick, avengers, inception, spiderMan, joker, darkKnight]);
+// let favorite = new Set();
 
-// all.add(johnWick);
-// all.add(avengers);
-// all.add(inception);
-// all.add(spiderMan);
-// all.add(joker);
-// all.delete(darkKnight);
 
-// for (let movie of all) {
-//     console.log(movie.date);
-// }
 
-console.log(all.size);
-
-let list = document.querySelector('.list');
-
-let i = 0;
-for (let movie of all) {
-    list.innerHTML += `<p data-id=${i} class="title">${movie.title}</p>`;
-    i++;
+function chooseFilm() {
+    target = this.dataset.id;
+    description(target);
 }
 
-let firstTitle = document.getElementsByClassName("title");
-firstTitle[0].setAttribute("id", "activeTitle");
+let firstStart = true;
 
-let activeTitle = document.getElementById("activeTitle");
+function description(data_id) {
+    let list = document.querySelector('.list');
+    list.innerHTML = '';
+    let i = 0;
 
+    for (let movie of all) {
+        list.innerHTML += `<p data-id=${i} class="title">${movie.title}</p>`;
+        i++;
+    }
 
-// console.log(activeTitle.innerHTML);
+    let title = document.getElementsByClassName("title");
 
-// let iterator = all.keys();
+    if (firstStart == true) {
+        title[0].setAttribute("id", "activeTitle");
+    } else {
+        title[data_id].setAttribute("id", "activeTitle");
+    }
 
-// let activeMovie = iterator.next().value;
-// console.log(activeMovie.title);
+    for (let i = 0; i < title.length; i++) {
+        title[i].addEventListener("click", chooseFilm);
+    }
 
-// for (johnWick of all) {
-//     console.log(johnWick.title);
-// }
-console.log(Array.from(all)[1].title);
-
-function description(a) {
-    let movieFromSet = Array.from(all)[a];
+    let movieFromSet = Array.from(all)[data_id];
+    console.log(movieFromSet)
     let poster = document.getElementById("poster");
     let description = document.getElementById("description");
-    // let actorsList = document.createElement("ul");
 
+    description.innerHTML = "";
     poster.src = movieFromSet.poster;
     description.innerHTML += `<h2>${movieFromSet.title}</h2>`;
     description.innerHTML += `<p>${movieFromSet.date}</p>`;
-
 
     for (let i = 0; i < movieFromSet.actors.length; i++) {
         description.innerHTML += `<li class="actorsList">${movieFromSet.actors[i]}</li>`;
     }
 
-    description.innerHTML += `<div class="info">${movieFromSet.info}</ class="info">`
-
+    description.innerHTML += `<div class="info">${movieFromSet.info}</ class="info">`;
+    description.innerHTML += `<img id="heart" src="./assets/images/empty_heart.png">`
+    let heart = document.getElementById("heart");
+    heart.addEventListener('click', movieFromSet.addToFavorite);
+    firstStart = false;
 }
-description(4);
+description(0);

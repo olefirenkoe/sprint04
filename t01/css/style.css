@@ -34,6 +34,7 @@ h1 {
     background: #e7e7e7;
     padding: 25px;
     padding-top: 0px;
+    position: relative;
 }
 
 .picture {
@@ -118,4 +119,15 @@ button:active {
     border-radius: 5px;
     padding: 2px;
     font-size: 16px;
+}
+
+#heart {
+    width: 40px;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+#heart:hover {
+    cursor: pointer;
 }
