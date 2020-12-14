@@ -1,24 +1,40 @@
 class Movie {
     constructor(title, poster, date, info, actors) {
-            this.title = title;
-            this.poster = poster;
-            this.date = date;
-            this.info = info;
-            this.actors = actors;
+        this.title = title;
+        this.poster = poster;
+        this.date = date;
+        this.info = info;
+        this.actors = actors;
+        this.heart = "./assets/images/empty_heart.png";
+    }
+    addToFavorite() {
+        if (movieFromSet.heart == "./assets/images/red_heart.png") {
+            return movieFromSet.removeFromFavorite();
         }
-        // 'addToFavorite' () {
-        //     // favorite.add();
-        //     console.log(this.title);
-        // }
+        favorite.add(movieFromSet);
+        console.log(favorite);
+        movieFromSet.heart = "./assets/images/red_heart.png";
+        heart.src = movieFromSet.heart;
+
+    }
     removeFromFavorite() {
-        alert("remove to favorite");
+        favorite.delete(movieFromSet);
+        console.log(favorite);
+        movieFromSet.heart = "./assets/images/empty_heart.png";
+        heart.src = movieFromSet.heart;
+        let choosedSet = document.getElementById('active');
+        if (choosedSet.innerHTML == "Favorite") {
+            if (favorite.size == 0) {
+                description.innerHTML = "<div class='error'>Choose a movie to add to your favorites!<span>(Click on 'All' button)</span></div>";
+                poster.src = './assets/images/exclamation-mark.png';
+                list.innerHTML = '';
+            } else {
+                render(0, favorite);
+            }
+
+        }
     }
 }
-
-Movie.prototype.addToFavorite = function() {
-    console.log(`Hello, my name is ${this.title}`);
-};
-
 
 let johnWick = new Movie("John Wick",
     "assets/images/JohnWick.jpg", "May 9, 2019",
@@ -99,23 +115,29 @@ let darkKnight = new Movie("The Dark Knight",
     are dating.`, ["Christian Bale", "Michael Caine", "Heath Ledger", "Gary Oldman"]);
 
 let all = new Set([johnWick, avengers, inception, spiderMan, joker, darkKnight]);
-// let favorite = new Set();
-
+let favorite = new Set();
 
 
 function chooseFilm() {
-    target = this.dataset.id;
-    description(target);
+    let target = this.dataset.id;
+    let choosedSet = document.getElementById('active');
+    if (choosedSet.innerHTML == "All") {
+        render(target);
+    } else {
+        render(target, favorite);
+    }
 }
 
 let firstStart = true;
+let movieFromSet;
+let list;
 
-function description(data_id) {
-    let list = document.querySelector('.list');
+function render(data_id, allorFav = all) {
+    list = document.querySelector('.list');
     list.innerHTML = '';
     let i = 0;
 
-    for (let movie of all) {
+    for (let movie of allorFav) {
         list.innerHTML += `<p data-id=${i} class="title">${movie.title}</p>`;
         i++;
     }
@@ -132,8 +154,7 @@ function description(data_id) {
         title[i].addEventListener("click", chooseFilm);
     }
 
-    let movieFromSet = Array.from(all)[data_id];
-    console.log(movieFromSet)
+    movieFromSet = Array.from(allorFav)[data_id];
     let poster = document.getElementById("poster");
     let description = document.getElementById("description");
 
@@ -147,9 +168,34 @@ function description(data_id) {
     }
 
     description.innerHTML += `<div class="info">${movieFromSet.info}</ class="info">`;
-    description.innerHTML += `<img id="heart" src="./assets/images/empty_heart.png">`
+    description.innerHTML += `<img id="heart" src="${movieFromSet.heart}">`
     let heart = document.getElementById("heart");
     heart.addEventListener('click', movieFromSet.addToFavorite);
     firstStart = false;
 }
-description(0);
+render(0);
+
+let buttons = document.getElementsByTagName('button');
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', chooseSet);
+}
+
+function chooseSet() {
+    let activeButton = document.getElementById('active');
+    activeButton.removeAttribute('id');
+    this.setAttribute("id", "active");
+
+    if (this.innerHTML == "All") {
+        render(0);
+        console.log(favorite.size == 0)
+    } else {
+        if (favorite.size == 0) {
+            description.innerHTML = "<div class='error'>Choose a movie to add to your favorites!<span>(Click on 'All' button)</span></div>";
+            poster.src = './assets/images/exclamation-mark.png';
+            list.innerHTML = '';
+        } else {
+            render(0, favorite);
+        }
+    }
+}

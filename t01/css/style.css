@@ -131,3 +131,10 @@ button:active {
 #heart:hover {
     cursor: pointer;
 }
+
+.error {
+    font-size: 20px;
+    text-align: center;
+    color: indianred;
+    margin-top: 200px;
+}
