@@ -4,10 +4,10 @@ body {
 
 #container {
     width: 500px;
-    margin: 40px auto;
+    margin: 10px auto;
     background-color: grey;
     display: grid;
-    grid-template-rows: 220px 100px 200px 300px;
+    grid-template-rows: 200px 100px 260px 300px;
     grid-gap: 10px;
     padding: 30px;
     border-radius: 30px;
@@ -39,6 +39,19 @@ body {
 #information {
     background: rgb(148, 148, 145);
     border-radius: 30px;
+    text-align: center;
+    font-size: 23px;
+    color: rgb(66, 66, 68);
+    padding: 10px;
+}
+
+#information p {
+    margin: 10px;
+    font-weight: bold;
+}
+
+#information span {
+    color: black;
 }
 
 #buttons {
@@ -50,11 +63,12 @@ button {
     display: block;
     width: 200px;
     height: 40px;
-    margin: 30px auto;
+    margin: 10px auto;
     border-radius: 30px;
     outline: none;
     color: white;
     font-size: large;
+    font-weight: bold;
     background: rgb(148, 148, 145);
     /* border: none; */
 }
