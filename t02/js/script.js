@@ -81,8 +81,8 @@ class Human {
             }, 3000);
         }
         setInterval(function() {
-            if (human.calories != 0) {
-                human.calories -= 200;
+            if (this.calories != 0) {
+                this.calories -= 200;
                 let caloriesinfo = document.getElementById('calories');
                 caloriesinfo.innerHTML -= 200;
                 checkerHungry();
