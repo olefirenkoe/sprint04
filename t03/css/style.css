@@ -16,6 +16,7 @@ body {
     margin: 20px;
     height: 200px;
     background: violet;
+    border: 4px dashed #494544;
 }
 
 .item0 {
@@ -58,4 +59,8 @@ body {
     transform: rotate(43deg);
     top: 780px;
     left: 250px;
+}
+
+.item:hover {
+    box-shadow: 0 0 30px black;
 }
