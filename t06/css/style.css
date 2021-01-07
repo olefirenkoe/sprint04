@@ -1,0 +1,65 @@
+body {
+    background: #303030;
+}
+
+.container {
+    width: 400px;
+    height: 699px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-rows: 60px 580px 60px;
+    /* grid-template-columns: 500px; */
+    grid-template-areas: "header" "message" "footer";
+    border-radius: 15px;
+    border: 4px solid white;
+}
+
+.header {
+    grid-area: header;
+    background: #8b251b;
+    line-height: 60px;
+    font-size: 25px;
+    color: white;
+    overflow: hidden;
+    padding-left: 30px;
+    border-radius: 10px 10px 0 0;
+}
+
+#message {
+    grid-area: message;
+    background: #787878;
+}
+
+.footer {
+    grid-area: footer;
+    background: #ffffff;
+    line-height: 60px;
+    border-radius: 0 0 10px 10px;
+}
+
+#input {
+    width: calc(100% - 50px);
+    height: 70%;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}
+
+#button {
+    width: 45px;
+    margin-top: 5px;
+    height: 90%;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    font-size: 40px;
+    color: #8b251b;
+    outline: none;
+}
+
+#button:active {
+    width: 40px;
+}
+
+#button:hover {
+    box-shadow: 0 0 10px grey;
+}
