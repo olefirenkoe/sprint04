@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T06</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <div class="header">J.A.R.V.I.S.</div>
-        <div id="message"></div>
+        <div id="message">
+            <!-- <div class="red">hello</div>
+            <div class="red">hi</div>
+            <div class="white">Good bye</div>
+            <div class="white">bye</div>
+            <div class="red">hello</div>
+            <div class="red">hi</div>
+            <div class="white">Good bye</div> -->
+        </div>
         <div class="footer">
-
             <input type="text" id="input" placeholder="Message J.A.R.V.I.S.">
-            <input type="button" id="button" value=">">
-
+            <input type="button" id="button" value=">" onclick="jarvis.answerMake()">
         </div>
     </div>
     <script src="js/script.js"></script>
