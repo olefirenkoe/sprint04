@@ -35,15 +35,6 @@ let jarvis = new Bot("Hello, I am J.A.R.V.I.S.",
     "I believe your intentions to be hostile.",
     "I will not respond to that.");
 
-// jarvis.answerMake();
-// jarvis.answerMake();
-// jarvis.answerMake();
-// jarvis.answerMake();
-// jarvis.answerMake();
-// jarvis.answerMake();
-// jarvis.answerMake();
-// jarvis.answerMake();
-
 let messageBox = document.getElementById("message");
 // let redMessage = document.createElement("div");
 // redMessage.setAttribute("class", "red");
@@ -51,13 +42,11 @@ let messageBox = document.getElementById("message");
 // whiteMessage.setAttribute("class", "white");
 let input = document.getElementById("input");
 
-
 function addMessage(params) {
     let redMessage = document.createElement("div");
     redMessage.setAttribute("class", "red");
     let whiteMessage = document.createElement("div");
     whiteMessage.setAttribute("class", "white");
-
 
     redMessage.innerHTML = input.value;
     messageBox.appendChild(redMessage);
