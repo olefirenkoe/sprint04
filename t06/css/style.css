@@ -43,11 +43,12 @@ body {
 }
 
 #input {
-    width: calc(100% - 50px);
+    width: calc(100% - 60px);
     height: 70%;
     font-size: 25px;
     border: none;
     outline: none;
+    margin-left: 10px;
 }
 
 #button {
@@ -116,4 +117,12 @@ body {
     top: 15px;
     left: -5px;
     z-index: -1;
+}
+
+.instruction {
+    color: honeydew;
+    font-size: 25px;
+    position: absolute;
+    top: 0;
+    left: 20px;
 }
