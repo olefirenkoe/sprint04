@@ -1,10 +1,29 @@
-letuser = {
+let user = {
     name: document.getElementById('name').value,
     age: document.getElementById('age').value,
     email: document.getElementById('email').value
 };
 
 // Don't edit above this line
+
+user = new Proxy(user, {
+    set(target, name, val) {
+        if (name === 'name' && /[0-9]/.test(val) != true) {
+            val = val.toLowerCase();
+            val = val.split(/\s+/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
+            target[name] = val;
+            return true;
+        } else if (name === 'age' && /\D/.test(val) != true && Number(val) <= 999 && /^0/.test(val) != true) {
+            target[name] = val;
+            return true;
+        } else if (name === "email" && /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(val) === true) {
+            target[name] = val;
+            return true;
+        } else {
+            return false;
+        }
+    }
+});
 
 // Don't edit below this line
 
