@@ -1,72 +1,51 @@
-// [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
-//     img.setAttribute('src', img.getAttribute('data-src'));
-//     img.onload = function() {
-//         img.removeAttribute('data-src');
-//     };
-// });
+let img = document.getElementsByTagName('img');
+let numberOf = document.getElementById('numberOf');
+let infoDiv = document.getElementById('info');
+let counter = 0;
 
-class APLazy {
-    constructor(lazyClass) {
-        if (typeof lazyClass === 'undefined') {
-            this.lazyClass = 'APLazy';
-        } else {
-            this.lazyClass = lazyClass;
-        }
+class LazyLoad {
 
-        this.lazyArray = [];
-    }
+    visible(target) {
 
-    setLazy() {
-        this.lazyArray = document.getElementsByClassName(this.lazyClass);
-    }
+        let targetPosition = {
+            top: window.pageYOffset + target.getBoundingClientRect().top,
+            left: window.pageXOffset + target.getBoundingClientRect().left,
+            right: window.pageXOffset + target.getBoundingClientRect().right,
+            bottom: window.pageYOffset + target.getBoundingClientRect().bottom
+        };
 
-    cleanLazy() {
-        this.lazyArray = Array.prototype.filter.call(this.lazyArray, (l) => l.getAttribute('data-src'));
-    }
+        let windowPosition = {
+            top: window.pageYOffset,
+            left: window.pageXOffset,
+            right: window.pageXOffset + document.documentElement.clientWidth,
+            bottom: window.pageYOffset + document.documentElement.clientHeight - 300
+        };
 
-    lazyLoad() {
-        for (let element of this.lazyArray) {
-            if (this.isInViewport(element)) {
-                if (element.getAttribute('data-src')) {
-                    element.src = element.getAttribute('data-src');
-                    element.removeAttribute('data-src');
-                }
+        if (targetPosition.bottom > windowPosition.top && targetPosition.top < windowPosition.bottom &&
+            targetPosition.right > windowPosition.left && targetPosition.left < windowPosition.right) {
+            if (target.hasAttribute('data-src')) {
+                target.src = target.dataset.src;
+                target.removeAttribute('data-src');
+                counter += 1;
+                numberOf.innerHTML = `${counter}`;
             }
-        }
-
-        this.cleanLazy();
-    }
-
-    isInViewport(element) {
-        var rect = element.getBoundingClientRect();
-
-        return (
-            rect.bottom >= 0 && rect.right >= 0 &&
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.left <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    registerListener(event, func) {
-        if (window.addEventListener) {
-            window.addEventListener(event, func);
+            if (counter == img.length) {
+                window.removeEventListener('scroll', lazy.load);
+                infoDiv.style.background = '#33C35A ';
+                setTimeout(() => infoDiv.remove(), 3000);
+            }
         } else {
-            window.attachEvent('on' + event, func);
+            return;
+        }
+    }
+    load() {
+        for (let i = 0; i < img.length; i++) {
+            lazy.visible(img[i]);
         }
     }
 }
-console.log(window.APLazy)
-if (typeof window.APLazy == 'undefined') {
-    window.APLazy = new APLazy('my-lazy-class');
 
-    window.APLazy.setLazy();
-    console.log(2)
-    window.APLazy.lazyLoad();
+let lazy = new LazyLoad();
 
-    window.APLazy.registerListener('scroll', function() { window.APLazy.lazyLoad(); });
-    window.APLazy.registerListener('resize', function() { window.APLazy.lazyLoad(); });
-} else if (typeof window.APLazy == 'object') {
-    window.APLazy.setLazy();
-    window.APLazy.lazyLoad();
-}
-console.log(window.APLazy)
+lazy.load();
+window.addEventListener('scroll', lazy.load);
