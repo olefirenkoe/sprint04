@@ -1,0 +1,29 @@
+#container {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+}
+
+#city {
+    text-align: center;
+    color: cornsilk;
+    background: rgb(0, 162, 255);
+}
+
+.day {
+    width: 200px;
+    text-align: center;
+    background-color: rgb(231, 231, 231);
+    margin: 10px auto;
+}
+
+hr {
+    background: rgb(0, 162, 255);
+    height: 2px;
+    border: none;
+}
+
+.degree {
+    font-size: 20px;
+    font-weight: bold;
+}
