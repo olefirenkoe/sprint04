@@ -5,11 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super-stats</title>
-    <link rel="stylesheet" href="ccss/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
-
+    <!-- <h1>Super-stats</h1> -->
+    <div class="container">
+        <div class="search">
+            <h1>Super-stats</h1>
+            <p>Compare stats of different superheroes.</br>
+                Find superheroes to compare using searh, or click 'Random' to search a random superhero.</br>
+                Once you have selected all the heroes you want to compare, click 'Compare'.
+            </p>
+            <input type="search" id="searchInpt" placeholder="search for a superhero">
+            <button id="searchBtn">search</button>
+            <button id="random">random</button>
+            <button id="compareBtn">compare <span id="number">0</span></button>
+        </div>
+        <div id="result">
+            <h2>Search Results</h2>
+            <p>(click to add to comparison)</p>
+            <div id="btnsResult"></div>
+        </div>
+        <div id="compare"></div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 
