@@ -35,3 +35,54 @@ input[type="search"] {
     padding: 5px;
     margin: 5px 10px 5px 10px;
 }
+
+#compare {
+    display: flex;
+}
+
+.optionsDiv {
+    margin: 50px 0px;
+    margin-left: -80px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.optionsDiv>button {
+    width: 140px;
+    height: 30px;
+    text-align: start;
+    padding-left: 15px;
+    font-weight: bold;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.nonActive::after {
+    content: " ";
+    display: block;
+    top: 5px;
+    left: 102px;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #666666;
+    border-radius: 50%;
+}
+
+.ActOptions {
+    background: rgb(39, 39, 39);
+    color: white;
+}
+
+.ActOptions::after {
+    content: " ";
+    display: block;
+    top: 3px;
+    left: 100px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #eff0f0;
+    border-radius: 50%;
+}
