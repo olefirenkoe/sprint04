@@ -1,0 +1,30 @@
+body {
+    background: #424242;
+}
+
+h1 {
+    color: white;
+}
+
+#map {
+    border: 3px solid rgb(161, 157, 157);
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(43, 43, 43);
+    width: 600px;
+    height: 500px;
+    position: relative;
+}
+
+.coordinates {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    top: 500px;
+    left: 10px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+    display: none;
+}
